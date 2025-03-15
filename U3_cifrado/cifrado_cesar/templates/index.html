@@ -11,10 +11,10 @@
         <h2>Cifrado César</h2>
         <form action="/cifrar" method="POST">
             <label>Texto a cifrar</label>
-            <input type="text" name="texto" value="{{texto}}" required>
+            <input type="text" name="texto" autocomplete="off" value="{{texto}}" required>
             <br><br>
             <label>Clave</label>
-            <input type="number" name="clave" value="{{clave}}">
+            <input type="number" name="clave" autocomplete="off" value="{{clave}}" required>
             <br><br>
             <button type="submit">Cifrar</button>
         </form>

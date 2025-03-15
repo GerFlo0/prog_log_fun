@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 
 ALPHABET = [char for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?@#$%&()+-*/=:,."]
 
 def cifrar_texto(texto, clave):
     try:
-        clave = int(clave)
         return "".join([ALPHABET[(ALPHABET.index(letra) + clave) % len(ALPHABET)] for letra in texto.upper() if letra in ALPHABET])
     except Exception as e:
         return f"Error en el cifrado {e}"
@@ -18,7 +17,7 @@ def home():
 @app.route("/cifrar", methods=["POST"])
 def cifrar():
     texto = request.form["texto"]
-    clave = int(request.form["clave"])
+    clave = int(request.form["clave"]) 
     
     resultado = cifrar_texto(texto, clave)
     
