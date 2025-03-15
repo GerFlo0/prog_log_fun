@@ -3,10 +3,8 @@ from flask import Flask, render_template, request
 ALPHABET = [char for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?@#$%&()+-*/=:,."]
 
 def cifrar_texto(texto, clave):
-    try:
-        return "".join([ALPHABET[(ALPHABET.index(letra) + clave) % len(ALPHABET)] for letra in texto.upper() if letra in ALPHABET])
-    except Exception as e:
-        return f"Error en el cifrado {e}"
+    return "".join([ALPHABET[(ALPHABET.index(letra) + clave) % len(ALPHABET)] for letra in texto.upper() if letra in ALPHABET])
+
 
 app = Flask(__name__)
 
