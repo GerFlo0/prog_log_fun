@@ -1,10 +1,9 @@
-import escencials as es
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 import re
 
-# Constantes
+# CONSTANTES
 RUTAS = {
     "Tijuana": {"KM": 2500, "L": 714},
     "Cd Juarez": {"KM": 1380, "L": 394},
@@ -14,16 +13,18 @@ RUTAS = {
     "Nogales": {"KM": 1720, "L": 491},
     "Tuxtla Gutierrez": {"KM": 1230, "L": 351},
     "Puerto Escondido": {"KM": 1050, "L": 300},
-    "Manzanillo": {"KM": 615, "L": 176}}
+    "Manzanillo": {"KM": 615, "L": 176}
+}
 TANK = 500
 COST_PER_L = 26
 KM_PER_L = 3.5
 WINDOW_SIZE = "850x350"
 HEADERS = ["Autobuses", "Destinos", "Corridas"]
 
-# Variables
+# VARIABLES
 entradas = []
 
+#FUNCIONES
 def procesar_entrada(selected_bus, selected_destino, entry_corridas):
     try:
         if not re.search(r'\.', entry_corridas.get()):
@@ -31,6 +32,7 @@ def procesar_entrada(selected_bus, selected_destino, entry_corridas):
             destino = selected_destino.get()
             if unidad == "Seleccione" or destino == "Seleccione":
                 return None
+            
             corridas = int(entry_corridas.get())
             km = RUTAS[destino]["KM"] * corridas
             l = km / KM_PER_L
@@ -54,21 +56,21 @@ def terminar(tabla, entradas):
     
     entradas.clear()
 
-# Crear la ventana principal
+#INTERFAZ
+#Ventana principal
 root = tk.Tk()
 root.geometry(WINDOW_SIZE)
 
-# Crear un marco para la imagen
+# Marco para la imagen
 frame_imagen = tk.Frame(root, width=300, height=250)
 frame_imagen.place(x=20, y=50)
 
 frame = tk.Frame(root)
 frame.place(x=350, y=100)
 
-# Crear el Treeview
 tabla = ttk.Treeview(frame, columns=("unidad", "destino", "corridas", "km", "L", "costo", "tanques"), show="headings")
 
-# Configurar las columnas
+#Columnas
 tabla.heading("unidad", text="Unidad", anchor="center")
 tabla.heading("destino", text="Destino", anchor="center")
 tabla.heading("corridas", text="Corridas", anchor="center")
@@ -94,7 +96,7 @@ tabla.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 # Cargar la imagen con PIL
-image_path = r"src\\mex_map_2.png"
+image_path = r".\\src\\mex_map_2.png"
 image = Image.open(image_path)
 image = image.resize((300, 250))  # Ajustar tamaño de la imagen
 photo = ImageTk.PhotoImage(image)

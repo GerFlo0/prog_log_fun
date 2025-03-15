@@ -1,22 +1,22 @@
-#agregar 4 ciudades más a la lista de rutas
-#sonora, tuxcla gutierrez, puerto escondido, manzanillo colima
+#precio del litro de diesel $26.00
+#Agregar costo del viaje en pesos mexicanos
+
+#calculo de distancias
+#haciendo x numero de corridas a cada destino desde san luis, cuantos km recorre en total
+# y cuantos litros de diesel se consumen en cada conjunto de corridas
 
 import tkinter as tk
 from PIL import Image, ImageTk
-km_por_litro = 3.5
+
 RUTAS = {
     "Tijuana": {"KM": 2500, "L": 714},
     "Cd Juarez": {"KM": 1380, "L": 394},
     "Nuevo Laredo": {"KM": 720, "L": 206},
     "Puerto Vallarta": {"KM": 624, "L": 178},
-    "Merida": {"KM": 1700, "L": 486},
-    "Nogales": {"KM": 1720, "L": 491},
-    "Tuxtla Gutierrez": {"KM": 1230, "L": 351},
-    "Puerto Escondido": {"KM": 1050, "L": 300},
-    "Manzanillo": {"KM": 615, "L": 176}}
+    "Merida": {"KM": 1700, "L": 486}}
 TANK = 500
 COST_PER_L = 26
-WINDOW_SIZE = "750x350"
+WINDOW_SIZE = "650x350"
 
 # Crear la ventana principal
 root = tk.Tk()
@@ -28,7 +28,7 @@ frame_imagen = tk.Frame(root, width=300, height=250)
 frame_imagen.place(x=20, y=50)
 
 # Cargar la imagen con PIL
-image_path = r"tec\\prog_logica_y_funcional\\src\\mex_map.png"
+image_path = r".\\src\\mex_map.png"
 image = Image.open(image_path)
 image = image.resize((300, 250))  # Ajustar tamaño de la imagen
 photo = ImageTk.PhotoImage(image)
@@ -64,8 +64,10 @@ lbls = {
         }
     }
 
+patata = 0
+
 for i, header in enumerate(lbls["headers"].keys()):
-    lbls["headers"][header].place(x=340+i*65, y=20)
+    lbls["headers"][header].place(x=260+i*65, y=20)
 
 for i, ruta in enumerate(RUTAS.keys()):
     lbls["routes"].append(tk.Label(root, text=ruta))
@@ -75,17 +77,17 @@ for i, ruta in enumerate(RUTAS.keys()):
     lbls["results"]["cost"].append(tk.Label(root, text=""))
     lbls["results"]["tanks"].append(tk.Label(root, text=""))
     
-    lbls["routes"][i].place(x=330, y=50+i*30)
-    lbls["entries"][i].place(x=420, y=50+i*30)
-    lbls["results"]["km"][i].place(x=460, y=50+i*30)
-    lbls["results"]["L"][i].place(x=530, y=50+i*30)
-    lbls["results"]["cost"][i].place(x=600, y=50+i*30)
-    lbls["results"]["tanks"][i].place(x=670, y=50+i*30)
+    lbls["routes"][i].place(x=250, y=50+i*30)
+    lbls["entries"][i].place(x=340, y=50+i*30)
+    lbls["results"]["km"][i].place(x=380, y=50+i*30)
+    lbls["results"]["L"][i].place(x=450, y=50+i*30)
+    lbls["results"]["cost"][i].place(x=520, y=50+i*30)
+    lbls["results"]["tanks"][i].place(x=590, y=50+i*30)
     
     if(i == len(RUTAS.keys())-1): patata = 50+i*30
 
 for i in range(len(lbls["totals"].keys())):
-    lbls["totals"][list(lbls["totals"].keys())[i]].place(x=460+i*70, y=patata+30)
+    lbls["totals"][list(lbls["totals"].keys())[i]].place(x=380+i*70, y=patata+30)
 
 # Función para calcular los resultados
 def calc_results():
@@ -97,7 +99,7 @@ def calc_results():
         corridas = int(lbls["entries"][i].get())
         km = corridas * RUTAS[ruta]["KM"]
         l = corridas * RUTAS[ruta]["L"]
-        cost = l * COST_PER_L
+        cost = km * COST_PER_L
         tanks = l / TANK
         tkm += km
         tl += l
@@ -114,7 +116,7 @@ def calc_results():
 
 # Botón calcular
 boton_calcular = tk.Button(root, text="CALCULAR")
-boton_calcular.place(x=150, y=300)
+boton_calcular.place(x=350, y=220)
 boton_calcular.config(command=calc_results)
 
 root.mainloop()

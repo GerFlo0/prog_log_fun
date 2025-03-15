@@ -1,5 +1,3 @@
-import re
-
 def format_and_truncate(value, decimals=2):
     try:
         if isinstance(value, str):

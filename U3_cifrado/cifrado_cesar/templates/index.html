@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Cifrado César</h2>
+        <form action="/cifrar" method="POST">
+            <label>Texto a cifrar</label>
+            <input type="text" name="texto" value="{{texto}}" required>
+            <br><br>
+            <label>Clave</label>
+            <input type="number" name="clave" value="{{clave}}">
+            <br><br>
+            <button type="submit">Cifrar</button>
+        </form>
+        
+        {% if resultado %}
+            <h3>Texto cifrado: {{ resultado }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -25,7 +25,7 @@ frame_imagen = tk.Frame(root, width=300, height=250)
 frame_imagen.place(x=20, y=50)
 
 # Cargar la imagen con PIL
-image_path = r"tec\\prog_logica_y_funcional\\src\\mex_map.png"
+image_path = r".\\src\\mex_map.png"
 image = Image.open(image_path)
 image = image.resize((300, 250))  # Ajustar tamaño de la imagen
 photo = ImageTk.PhotoImage(image)
