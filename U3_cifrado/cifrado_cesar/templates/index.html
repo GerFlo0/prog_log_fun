@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cifrado César</title>
+    <title>Cesar code</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h2>Cifrado César</h2>
-        <form action="/cifrar" method="POST">
-            <label>Texto a cifrar</label>
-            <input type="text" name="texto" autocomplete="off" value="{{texto}}" required>
+        <h2>Cesar code</h2>
+        <form action="/do_cesar" method="POST">
             <br><br>
-            <label>Clave</label>
-            <input type="number" name="clave" autocomplete="off" value="{{clave}}" required>
+            <label>Text</label>      
+            <input type="text" name="text" autocomplete="off" value="{{text}}" required>
             <br><br>
-            <button type="submit">Cifrar</button>
+            <label>Key</label>
+            <input type="number" name="key" autocomplete="off" value="{{key}}" required>
+            <br><br>
+            <select id="mode" name="mode">
+                <option value="1" {% if mode == 1 %}selected{% endif %}>Encode</option>
+                <option value="-1" {% if mode == -1 %}selected{% endif %}>Decode</option>
+            </select>
+            <br><br>
+            <button type="submit">Run</button>
         </form>
         
-        {% if resultado %}
-            <h3>Texto cifrado: {{ resultado }}</h3>
+        {% if result %}
+            <h3>Texto cifrado: {{ result }}</h3>
         {% endif %}
     </div>
 </body>
