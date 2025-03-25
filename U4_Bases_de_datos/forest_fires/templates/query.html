@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Custom Query</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/query_styles.css') }}">
+</head>
+<body>
+    <h1>Run Custom Query</h1>
+    
+    <form action="/query" method="POST">
+        <label for="query">Enter SQL Query:</label>
+        <textarea id="query" name="query" placeholder="Enter your SQL query here..."></textarea>
+        <button type="submit">Run Query</button>
+    </form>
+    
+    {% if records %}
+        <h2>Query Results</h2>
+        <table class="result-table">
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in records %}
+                    <tr>
+                        {% for data in row %}
+                            <td>{{ data }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif records is not none %}
+        <p>No results to display.</p>
+    {% endif %}
+    
+    <a href="/">Back to Home</a>
+</body>
+</html>

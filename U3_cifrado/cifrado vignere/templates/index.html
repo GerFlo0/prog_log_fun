@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cesar cipher</title>
+    <title>Vigenere cipher</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
         <h2>Cesar code</h2>
-        <form action="/do_cesar" method="POST">
+        <form action="/do_vigenere" method="POST">
             <br><br>
             <label>Text</label>      
             <input type="text" name="text" autocomplete="off" value="{{text}}" required>
             <br><br>
             <label>Key</label>
-            <input type="number" name="key" autocomplete="off" value="{{key}}" required>
+            <input type="text" name="key" autocomplete="off" value="{{key}}" required>
             <br><br>
             <select id="mode" name="mode">
                 <option value="1" {% if mode == 1 %}selected{% endif %}>Encode</option>

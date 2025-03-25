@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 
-ALPHABET = [char for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?@#$%&()+-*/=:,."]
+ALPHABET = [char for char in "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!%$#@"]
 
 def cesar(text, key, mode):
-    return "".join([ALPHABET[(ALPHABET.index(char) + (key * mode)) % len(ALPHABET)] for char in text.upper() if char in ALPHABET])
+    return "".join([ALPHABET[(ALPHABET.index(char) + (key * mode)) % len(ALPHABET)] for char in text if char in ALPHABET])
 
 
 app = Flask(__name__)
